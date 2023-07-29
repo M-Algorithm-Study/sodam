@@ -1,4 +1,4 @@
-# 백준 / 15655번 N과 M(8)
+# 백준 / 15663번 N과 M(9)
 
 import sys
 input = sys.stdin.readline
@@ -7,15 +7,19 @@ def dfs(x):
     if x == m:
         print(*res)
         return 
+    
+    cnt = -1 
 
     for i in range(n): 
-        if visited[i] == 0 : 
-            res.append(lst[i]) 
-            dfs(x+1)
-            res.pop()
+        if visited[i] == 0 and cnt != lst[i]: 
             visited[i] = 1 
-            for j in range(i+1, n):
-                visited[j] = 0
+            res.append(lst[i])
+            cnt = lst[i]
+
+            dfs(x+1)
+
+            res.pop()
+            visited[i] = 0
             
 n, m = map(int, input().split())
 lst=sorted(list(map(int,input().split())))
