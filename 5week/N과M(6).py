@@ -10,10 +10,10 @@ def dfs(x):
 
     for i in range(n): 
         if visited[i] == 0 : 
-            visited[i] = 1 
             res.append(lst[i]) 
             dfs(x+1)
             res.pop()
+            visited[i] = 1 
             for j in range(i+1, n):
                 visited[j] = 0
             
