@@ -5,27 +5,25 @@ input = sys.stdin.readline
 
 n=int(input())
 m=int(input())
+lst=list(input().strip())
 btn=abs(n-100)
 
 if m == 0:
-    print(min(btn,len(str(n)))) 
-    sys.exit()
-# 고장난 버튼이 0개일 경우 버튼이 눌리는 최소 값 출력하고 종료
-
-else:
-    lst=list(input().strip())
-    
-for i in range(1000001):
+  print(min(btn,len(str(n)))) 
+# 고장난 버튼이 0개일 경우 버튼이 눌리는 최솟값 출력
+else: 
+# 완전탐색 (주어지는 제일 큰 채널 500,000 기준 최댓값 999,901까지 탐색)
+  for i in range(999901):
     i=str(i)
-    chk=True
+    chk=1
     # 채널 숫자 중 고장난 버튼이 있으면 false
-    for j in range(len(i)):
-        if i[j] in lst:
-            chk=False
-            break
+    for j in i:
+      if j in lst:
+        chk=0
+        break
         
-    if chk==True: #고장난 버튼이 없으면 최소 값 재설정
-        btn=min(btn, abs(n-int(i))+len(i))
-print(btn)
+    if chk: #고장난 버튼이 없으면 최솟값 재설정
+      btn=min(btn, abs(n-int(i))+len(i))
+  print(btn)
 
 
